@@ -19,5 +19,5 @@ class TrainingConfig:
 
 @dataclass
 class NovDataFrameConfig:
-    source_sequence_column: str = 'transcript'
-    nov_count: str = 'nov'
+    input_texts: str = 'transcript'
+    output_col: str = 'nov'
