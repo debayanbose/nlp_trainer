@@ -11,7 +11,7 @@ class NoVDataset(Dataset):
         self.df_config = NovDataFrameConfig()
 
     def __getitem__(self, index):
-        title = str(self.data[self.df_config.source_sequence_column][index])
+        title = str(self.data[self.df_config.input_texts][index])
         title = " ".join(title.split())
         inputs = self.tokenizer.encode_plus(
                                             title,
