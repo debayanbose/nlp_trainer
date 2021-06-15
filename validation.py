@@ -18,7 +18,7 @@ class NumberOfVehiclesModelValidator:
         total_size = len(df)
         correct = 0
         for _, row in df.iterrows():
-            generated_prediction = self.nov_predictor.predict(str(row[NumberOfVehiclesModelValidator.nov_df_config.source_sequence_column]))
+            generated_prediction = self.nov_predictor.predict(str(row[NumberOfVehiclesModelValidator.nov_df_config.input_texts]))
             actual_answer = row['ENCODE_CAT']
             if generated_prediction == actual_answer:
                 correct += 1
