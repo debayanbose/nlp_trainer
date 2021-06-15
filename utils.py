@@ -13,7 +13,7 @@ def level_encoding(training_config: TrainingConfig):
     if len(df) > 0:
         def encode_cat(x):
             return int(x - 1) if x<training_config.n_categories else training_config.n_categories - 1
-        df['ENCODE_CAT'] = df[NovDataFrameConfig.nov_count].apply(lambda x: encode_cat(x))
+        df['ENCODE_CAT'] = df[NovDataFrameConfig.output_col].apply(lambda x: encode_cat(x))
         return df
     else:
         raise ValueError("Blank Data")
@@ -41,7 +41,7 @@ def calculate_avg_accuracy_scores(nov_predictor: NoVPredictor, training_config: 
     total_size = len(df)
     correct = 0
     for _,row in df.iterrows():
-        generated_prediction = nov_predictor.predict(str(row[nov_dataframe_config.source_sequence_column]))
+        generated_prediction = nov_predictor.predict(str(row[nov_dataframe_config.input_texts]))
         actual_answer = row['ENCODE_CAT']
         if generated_prediction == actual_answer:
             correct += 1
